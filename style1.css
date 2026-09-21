@@ -1,0 +1,208 @@
+
+:root {
+    --fondo-noche: #1a1a24;
+    --verde-tallo: #4caf50;
+    --verde-tallo-osc: #2e7d32;
+    --verde-hoja: #388e3c;
+    --cuerda: #8d6e63;
+    --flor-centro-1: #3e2723;
+    --flor-centro-2: #1b100c;
+    --flor-petalo-1: #FFD700;
+    --flor-petalo-2: #ff9800;
+}
+
+body { 
+    margin: 0; background-color: var(--fondo-noche); 
+    overflow: hidden; height: 100vh; font-family: 'Segoe UI', Tahoma, sans-serif; 
+}
+
+#lluvia-petalos { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+.escenario { position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; }
+
+
+.cuadro-central {
+    position: absolute; bottom: 3vh; background: rgba(20, 20, 30, 0.95); backdrop-filter: blur(0px);
+    border: 5px solid rgba(255, 215, 0, 0.4); padding:10px; border-radius: 20px; text-align: center;
+    color: #FFF; width: 85%; max-width: 350px; z-index: 40; box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+    
+    opacity: 0; transform: translateY(30px);
+    animation: entrarCuadro 0.8s ease-out forwards;
+}
+
+@keyframes entrarCuadro { to { opacity: 1; transform: translateY(0); } }
+
+.cuadro-central h2 { color: var(--flor-petalo-1); margin: 0 0 5px; font-size: 1.2em;}
+.cuadro-central p { margin: 0; font-size: 0.85em; color: #ddd; }
+
+
+.ramo-amarrado {
+    position: relative; width: 350px; height: 450px; margin-bottom: 70px; z-index: 10;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+}
+
+
+.base-tallos {
+    position: absolute; bottom: 0; width: 70px; height: 120px; display: flex; justify-content: space-around;
+    transform-origin: bottom; transform: scaleY(0);
+    animation: crecerTallos 1s ease-out 0.8s forwards;
+}
+
+@keyframes crecerTallos { to { transform: scaleY(1); } }
+
+.tallo-base { width: 7px; height: 100%; background: linear-gradient(to right, var(--verde-tallo-osc), var(--verde-tallo)); border-radius: 5px; }
+.base-tallos .tallo-base:nth-child(1) { transform: rotate(15deg); }
+.base-tallos .tallo-base:nth-child(2) { transform: rotate(10deg); }
+.base-tallos .tallo-base:nth-child(6) { transform: rotate(-10deg); }
+.base-tallos .tallo-base:nth-child(7) { transform: rotate(-15deg); }
+
+.cuerda {
+    position: absolute; bottom: 65px; width: 70px; height: 15px; background: var(--cuerda);
+    border-radius: 10px; z-index: 15; box-shadow: inset 0 3px 5px rgba(0,0,0,0.5), 0 5px 10px rgba(0,0,0,0.4);
+    opacity: 0; transform: scale(0);
+    animation: aparecerCuerda 0.5s ease-out 1.5s forwards;
+}
+
+@keyframes aparecerCuerda { to { opacity: 1; transform: scale(1); } }
+
+.lazo { position: absolute; 
+    top: -5px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 30px; 
+    height: 20px; 
+    border: 3px solid var(--cuerda); 
+    border-radius: 50%; 
+    box-shadow: 0 3px 5px rgba(0,0,0,0.3); 
+}
+
+
+.follaje { position: absolute; bottom: 90px; width: 100%; height: 300px; z-index: 5; }
+
+.hoja-grande {
+    position: absolute; width: 80px; height: 120px; background: var(--verde-hoja);
+    border-radius: 0 100% 0 100%; box-shadow: inset -5px -5px 15px rgba(0,0,0,0.4);
+    opacity: 0; transform: scale(0);
+    animation: brotarHoja 1s ease-out 1.8s forwards;
+}
+
+@keyframes brotarHoja { to { opacity: 1; transform: scale(1) rotate(var(--r)); } }
+
+.hg1 { bottom: 40px; left: 30px; --r: -30deg; transform-origin: bottom right; }
+.hg2 { bottom: 120px; right: 10px; --r: 90deg; transform-origin: bottom left; }
+.hg3 { top: 50px; left: -10px; --r: -30deg; transform-origin: bottom right; }
+.hg4 { top: -20px; right: -10px; --r: 90deg; transform-origin: bottom left; }
+.hg5 { top: -30px; left: 60px; --r: -10deg; transform-origin: bottom right; }
+.hg6 { top: -105px; right: 85px; --r: 76deg; transform-origin: bottom left; }
+
+
+.girasoles { position: absolute; bottom: 80px; width: 100%; height: 320px; z-index: 20; }
+
+.flor {
+    position: absolute; width: 100px; height: 100px; cursor: pointer;
+    opacity: 0; transform: scale(0) rotate(-45deg);
+}
+
+
+.f-aba-izq  { top: 160px; left: 50px; z-index: 24;  animation: entrarFlor 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.5s forwards; }
+.f-aba-der  { top: 160px; right: 50px; z-index: 24; animation: entrarFlor 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.7s forwards; }
+.f-aba-cen  { top: 175px; left: 125px; z-index: 25; animation: entrarFlor 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.9s forwards; }
+.f-mid-izq  { top: 75px; left: 30px; z-index: 22;   animation: entrarFlor 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 3.1s forwards; }
+.f-mid-der  { top: 75px; right: 30px; z-index: 22;  animation: entrarFlor 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 3.3s forwards; }
+.f-mid-cen  { top: 85px; left: 125px; z-index: 23;  animation: entrarFlor 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 3.5s forwards; }
+.f-arriba   { top: 0; left: 125px; z-index: 21;     animation: entrarFlor 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 3.8s forwards; }
+
+@keyframes entrarFlor { to { opacity: 1; transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4)); } }
+.flor:hover { transform: scale(1.1) !important; filter: drop-shadow(0 0 20px rgba(255,215,0,0.8)); }
+
+
+.centro {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 45px; height: 45px;
+    background: radial-gradient(circle, var(--flor-centro-1) 40%, var(--flor-centro-2) 100%);
+    border-radius: 50%; box-shadow: inset 0 0 10px rgba(0,0,0,0.8); z-index: 10;
+}
+.petalos-container { position: relative; width: 100%; height: 100%; }
+.petalo-g {
+    position: absolute; top: -10px; left: 50%; margin-left: -12px; width: 24px; height: 55px;
+    background: linear-gradient(to bottom, var(--flor-petalo-1), var(--flor-petalo-2));
+    border-radius: 50% 50% 10% 10%; transform-origin: bottom center; box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+
+#modal-mensaje { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); display: flex; justify-content: center; align-items: center; z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+#modal-mensaje:not(.oculto) { opacity: 1; pointer-events: auto; }
+.modal-cristal { background: rgba(255,215,0,0.1); border: 1px solid var(--flor-petalo-1); padding: 25px; border-radius: 15px; text-align: center; width: 80%; max-width: 300px; box-shadow: 0 0 20px rgba(255,215,0,0.2); }
+#texto-mensaje { font-size: 1.3em; color: #FFF; font-weight: bold; margin-bottom: 15px;}
+.modal-cristal small { color: #aaa; font-size: 0.9em; }
+
+
+.contenedor-texto-arriba {
+    position: absolute;
+    top: 5vh; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%; 
+    text-align: center;
+    z-index: 5;
+}
+
+#texto-escribiendo {
+    font-size: 1.4em;
+    color: #FFF;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(241, 206, 6, 0.882);
+    margin: 0;
+    line-height: 1.4;
+
+}
+
+
+.cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1.1em;
+    background-color: var(--flor-petalo-1);
+    vertical-align: middle;
+    margin-left: 2px;
+    animation: titilar 0.8s infinite;
+}
+
+@keyframes titilar {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* =========================================
+   PANTALLA DE BIENVENIDA Y PAUSA
+   ========================================= */
+#pantalla-bienvenida {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background-color: var(--fondo-noche);
+    z-index: 1000; /* Encima de absolutamente todo */
+    display: flex; justify-content: center; align-items: center;
+    transition: opacity 1s ease; /* Desvanecimiento suave */
+}
+
+#btn-abrir {
+    background: var(--flor-petalo-1);
+    color: #111;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    animation: palpitarBoton 1.5s infinite;
+}
+
+@keyframes palpitarBoton {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* El truco maestro: Pausa todas las animaciones mientras la pantalla esté activa */
+body.esperando * {
+    animation-play-state: paused !important;
+}
+
+@media (max-width: 380px) { .ramo-amarrado { transform: scale(0.85); margin-bottom: 50px; } }

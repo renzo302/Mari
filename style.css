@@ -171,15 +171,13 @@ body {
     50% { opacity: 0; }
 }
 
-/* =========================================
-   PANTALLA DE BIENVENIDA Y PAUSA
-   ========================================= */
+
 #pantalla-bienvenida {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     background-color: var(--fondo-noche);
     z-index: 1000; /* Encima de absolutamente todo */
     display: flex; justify-content: center; align-items: center;
-    transition: opacity 1s ease; /* Desvanecimiento suave */
+    transition: opacity 1s ease; 
 }
 
 #btn-abrir {
@@ -200,7 +198,7 @@ body {
     50% { transform: scale(1.05); }
 }
 
-/* El truco maestro: Pausa todas las animaciones mientras la pantalla esté activa */
+
 body.esperando * {
     animation-play-state: paused !important;
 }

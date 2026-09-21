@@ -93,20 +93,15 @@ function maquinaEscribir() {
 
 
 
-
-
-/* =========================================
-   BOTÓN DE INICIO Y MÚSICA
-   ========================================= */
 const btnAbrir = document.getElementById('btn-abrir');
 const pantallaBienvenida = document.getElementById('pantalla-bienvenida');
 const musica = document.getElementById('musica-fondo');
 
 btnAbrir.addEventListener('click', () => {
-    // 1. Inicia la música (ahora sí funcionará porque ella hizo clic)
+    
     musica.play();
     
-    // 2. Quita la pausa a las animaciones de CSS para que empiece a armarse el ramo
+    
     document.body.classList.remove('esperando');
     
     // 3. Desvanece la pantalla de bienvenida
@@ -115,9 +110,7 @@ btnAbrir.addEventListener('click', () => {
         pantallaBienvenida.style.display = 'none';
     }, 1000);
 
-    // 4. Inicia la escritura de tu dedicatoria (espera 4.5s a que nazcan las flores)
+    
     setTimeout(maquinaEscribir, 4500);
 });
 
-// ¡IMPORTANTE! Borra el setTimeout(maquinaEscribir, 4500); viejo que estaba suelto
-// al final de tu script anterior, ya que ahora lo estamos controlando desde aquí arriba.
